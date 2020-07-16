@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="sise.cch.mapper.UserMapper">
+
+        <!-- 新增user-->
+        <insert id="saveUser" parameterType="user">
+            INSERT `user`(userName,password,realName)
+            VALUES (#{userName},#{password},#{realName})
+        </insert>
+        <!-- 查询所有user-->
+        <select id="findAllUser" resultType="sise.cch.entity.User">
+            SELECT id,userName,password,realName FROM `user`
+        </select>
+        <!-- 根据Id查询user-->
+        <select id="findUserById" parameterType="int" resultType="sise.cch.entity.User">
+            SELECT * from user where id = #{id}
+        </select>
+
+        <!-- 更新user-->
+        <update id="updateUser" parameterType="user">
+            UPDATE user SET
+              userName=#{userName},password=#{password},realName=#{realName}
+            WHERE id = #{id}
+        </update>
+
+        <!-- 删除user-->
+        <delete id="deleteUser" parameterType="int">
+            DELETE from user WHERE id = #{id}
+        </delete>
+    </mapper>
